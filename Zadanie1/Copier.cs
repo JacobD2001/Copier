@@ -8,15 +8,13 @@ namespace Zadanie1
 {
     public class Copier : BaseDevice, IPrinter, IScanner
     {
-        public int PrintCounter { get; set; } //zwraca aktualną liczbę wydrukowanych dokumentów,
-        public int ScanCounter { get; set; } //zwraca liczbę zeskanowanych dokumentów,
+        public int PrintCounter { get; set; } 
+        public int ScanCounter { get; set; } 
         public new int Counter { get; set; }
-
-        //public int Counter { get; set; } //zwraca liczbę uruchomień kserokopiarki  
 
         public void Print(in IDocument document)
         {
-
+            
             if (GetState() == IDevice.State.on)
             {
                 DateTime printInfo = DateTime.Now;
@@ -27,12 +25,12 @@ namespace Zadanie1
 
         }
 
-        public new void PowerOn()
+        public new void PowerOn() //turns on the compier
         {
-            if (GetState() == IDevice.State.off) //checks if copier is off 
+            if (GetState() == IDevice.State.off) 
             {               
-                base.PowerOn(); //if copier is of turn on the copier
-                Counter++;    //counts how many times has been switched on
+                base.PowerOn(); 
+                Counter++;    
             }
         }
 
@@ -51,16 +49,13 @@ namespace Zadanie1
                 else if(formatType == IDocument.FormatType.TXT)
                     document = new TextDocument($"{printScanInfo} Scan: TextScan{ScanCounter}.txt");
                
-                ScanCounter++; //increments scan counter
-
-                Console.WriteLine($"{printScanInfo} Scan: {document.GetFileName()}");
-
-                
+                ScanCounter++;
+                Console.WriteLine($"{printScanInfo} Scan: {document.GetFileName()}");             
             }
 
         }
 
-        public void ScanAndPrint()
+        public void ScanAndPrint() //scans and prints
         {
             if (GetState() == IDevice.State.on)
             {
@@ -68,11 +63,7 @@ namespace Zadanie1
                 Scan(out document, IDocument.FormatType.JPG);
                 Print(in document);
             }
-
-
         }
-
-
     }
 }
 

@@ -4,14 +4,13 @@ namespace Zadanie1
 {
     public interface IDevice
     {
-        enum State {on, off};
+        enum State { on, off };
 
-        void PowerOn(); // uruchamia urządzenie, zmienia stan na `on`
-        void PowerOff(); // wyłącza urządzenie, zmienia stan na `off
-        State GetState(); // zwraca aktualny stan urządzenia
+        void PowerOn();
+        void PowerOff();
+        State GetState();
 
-        int Counter { get;}  // zwraca liczbę charakteryzującą eksploatację urządzenia,
-                            // np. liczbę uruchomień, liczbę wydrukow, liczbę skanów, ...
+        int Counter { get; }
     }
 
     public abstract class BaseDevice : IDevice
@@ -30,23 +29,16 @@ namespace Zadanie1
             state = IDevice.State.on;
             Console.WriteLine("Device is on ...");  
         }
-
         public int Counter { get; private set; } = 0;
     }
 
     public interface IPrinter : IDevice
     {
-        /// <summary>
-        /// Dokument jest drukowany, jeśli urządzenie włączone. W przeciwnym przypadku nic się nie wykonuje
-        /// </summary>
-        /// <param name="document">obiekt typu IDocument, różny od `null`</param>
         void Print(in IDocument document);
     }
 
     public interface IScanner : IDevice
     {
-        // dokument jest skanowany, jeśli urządzenie włączone
-        // w przeciwnym przypadku nic się dzieje
         void Scan(out IDocument document, IDocument.FormatType formatType);
     }
 

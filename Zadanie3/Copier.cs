@@ -8,8 +8,8 @@ namespace Zadanie3
 {
     class Copier : BaseDevice, IPrinter, IScanner
     {
-        public int PrintCounter { get; set; } //zwraca aktualną liczbę wydrukowanych dokumentów,
-        public int ScanCounter { get; set; } //zwraca liczbę zeskanowanych dokumentów,
+        public int PrintCounter { get; set; } 
+        public int ScanCounter { get; set; } 
         public new int Counter { get; set; }
         public Printer Printer { get; }
         public Scanner Scanner { get; }
@@ -45,11 +45,5 @@ namespace Zadanie3
         {
             throw new NotImplementedException();
         }
-
-    }
-
-
-
-
-    
+    } 
 }

@@ -5,13 +5,10 @@ namespace Zadanie3
     public interface IDevice
     {
         enum State { on, off };
-
-        void PowerOn(); // uruchamia urządzenie, zmienia stan na `on`
-        void PowerOff(); // wyłącza urządzenie, zmienia stan na `off
-        State GetState(); // zwraca aktualny stan urządzenia
-
-        int Counter { get; }  // zwraca liczbę charakteryzującą eksploatację urządzenia,
-                              // np. liczbę uruchomień, liczbę wydrukow, liczbę skanów, ...
+        void PowerOn(); 
+        void PowerOff(); 
+        State GetState(); 
+        int Counter { get; }  
     }
 
     public abstract class BaseDevice : IDevice
@@ -36,23 +33,14 @@ namespace Zadanie3
 
     public interface IPrinter : IDevice
     {
-        /// <summary>
-        /// Dokument jest drukowany, jeśli urządzenie włączone. W przeciwnym przypadku nic się nie wykonuje
-        /// </summary>
-        /// <param name="document">obiekt typu IDocument, różny od `null`</param>
         void Print(in IDocument document);
     }
 
     public interface IScanner : IDevice
     {
-        // dokument jest skanowany, jeśli urządzenie włączone
-        // w przeciwnym przypadku nic się dzieje
         void Scan(out IDocument document, IDocument.FormatType formatType);
     }
-
-    //Zadanie 3
-
-    public class Printer : BaseDevice, IPrinter //Printer class (1)
+    public class Printer : BaseDevice, IPrinter 
     {
         public int PrintCount { get; set; }
 
@@ -63,14 +51,14 @@ namespace Zadanie3
             if (GetState() == IDevice.State.on)
             {
                
-                Console.WriteLine($"{DateTime.Now} Print: {document.GetFileName()}"); //prints info
+                Console.WriteLine($"{DateTime.Now} Print: {document.GetFileName()}"); 
                 PrintCount++;
 
             }
         }
     }
 
-    public class Scanner : BaseDevice, IScanner //Scanmer class (2)
+    public class Scanner : BaseDevice, IScanner 
     {
         public int ScanCount { get; set; }
 
@@ -89,14 +77,10 @@ namespace Zadanie3
                 else if (formatType == IDocument.FormatType.TXT)
                     document = new TextDocument($"{printScanInfo} Scan: TextScan{ScanCount}.txt");
 
-                ScanCount++; //increments scan counter
+                ScanCount++; 
 
                 Console.WriteLine($"{printScanInfo} Scan: {document.GetFileName()}");
-
-
             }
-
         }
     }
-
 }

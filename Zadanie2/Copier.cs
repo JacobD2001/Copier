@@ -8,11 +8,9 @@ namespace Zadanie2
 {
     public class Copier : BaseDevice, IPrinter, IScanner
     {
-        public int PrintCounter { get; set; } //zwraca aktualną liczbę wydrukowanych dokumentów,
-        public int ScanCounter { get; set; } //zwraca liczbę zeskanowanych dokumentów,
+        public int PrintCounter { get; set; } 
+        public int ScanCounter { get; set; } 
         public new int Counter { get; set; }
-
-        //public int Counter { get; set; } //zwraca liczbę uruchomień kserokopiarki  
 
         public void Print(in IDocument document)
         {
@@ -29,13 +27,12 @@ namespace Zadanie2
 
         public new void PowerOn()
         {
-            if (GetState() == IDevice.State.off) //checks if copier is off 
+            if (GetState() == IDevice.State.off) 
             {
-                base.PowerOn(); //if copier is of turn on the copier
-                Counter++;    //counts how many times has been switched on
+                base.PowerOn(); 
+                Counter++;    
             }
         }
-
         public void Scan(out IDocument document, IDocument.FormatType formatType = IDocument.FormatType.TXT) //printing scan info
         {
             document = null;
@@ -54,10 +51,7 @@ namespace Zadanie2
                 ScanCounter++; //increments scan counter
 
                 Console.WriteLine($"{printScanInfo} Scan: {document.GetFileName()}");
-
-
             }
-
         }
 
         public void ScanAndPrint()
@@ -68,11 +62,7 @@ namespace Zadanie2
                 Scan(out document, IDocument.FormatType.JPG);
                 Print(in document);
             }
-
-
         }
-
-
     }
 }
 

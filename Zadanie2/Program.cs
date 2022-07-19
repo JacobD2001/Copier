@@ -14,8 +14,6 @@ namespace Zadanie2
         
             System.Console.WriteLine(xerox.ReceivedFaxes);
             System.Console.WriteLine(xerox.SentFaxes);
-
-
         }
     }
 }

@@ -32,7 +32,6 @@ namespace Zadanie2
             
         }
 
-
         public void ScanSendFax(String recipent) 
         {
             IDocument scannedDocument;
@@ -40,15 +39,5 @@ namespace Zadanie2
             SendFax(scannedDocument, recipent); //sends fax
            
         }
-
-        
-
-
-
-
-
-
-
-
     }
 }
